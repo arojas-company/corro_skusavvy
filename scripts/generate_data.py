@@ -55,16 +55,49 @@ query DashboardVariants($limit: Int, $offset: Int) {
 }
 """
 
-# Try to discover warehouse list. If the account schema is different, we keep KNOWN_WAREHOUSES.
+WAREHOUSE_VARIANTS_QUERY = """
+query DashboardVariantsByWarehouse($limit: Int, $offset: Int, $warehouseId: UUID!) {
+  variants(limit: $limit, offset: $offset, inStock: $warehouseId) {
+    id
+    sku
+    price
+    averageSales
+    totalQuantity
+    backorderable
+    shopifyId
+    product {
+      id
+      name
+      type
+      status
+      shopifyId
+      deletedAt
+    }
+    inventoryItem {
+      id
+      sku
+      totalQuantity
+    }
+  }
+}
+"""
+
+# Discover warehouse list. SKUSavvy warehouses has no limit/offset args.
+# We only require id/name so the dropdown can use real UUIDs for Wellington, Drop Ship, etc.
 WAREHOUSES_CANDIDATES = [
-    ("warehouses", """
-    query Warehouses($limit: Int, $offset: Int) {
-      warehouses(limit: $limit, offset: $offset) { id name location }
+    ("warehouses_id_name", """
+    query Warehouses {
+      warehouses { id name }
     }
     """),
-    ("warehouses_location_fields", """
-    query Warehouses($limit: Int, $offset: Int) {
-      warehouses(limit: $limit, offset: $offset) { id name city state address }
+    ("warehouses_with_location_name", """
+    query Warehouses {
+      warehouses { id name location { name } }
+    }
+    """),
+    ("warehouses_with_location_city_state", """
+    query Warehouses {
+      warehouses { id name location { city state } }
     }
     """),
 ]
@@ -150,8 +183,8 @@ query TypeDebug($name: String!) {
     name kind
     fields {
       name
-      args { name type { name kind ofType { name kind ofType { name kind ofType { name kind } } } } }
-      type { name kind ofType { name kind ofType { name kind ofType { name kind ofType { name kind } } } } }
+      args { name type { name kind ofType { name kind } } }
+      type { name kind ofType { name kind } }
     }
   }
 }
@@ -228,6 +261,32 @@ def fetch_variants() -> List[Dict[str, Any]]:
     return rows
 
 
+
+def fetch_variants_by_warehouse(warehouse_id: str) -> List[Dict[str, Any]]:
+    """Fetch variants that SKUSavvy reports as in stock for a warehouse.
+
+    This uses the schema-provided variants(inStock: UUID) argument. It is the closest
+    match to the warehouse inventory screen until the account exposes a bulk
+    InventoryQty query. It makes the dashboard change by warehouse and avoids showing
+    SKUs that are not present in the selected warehouse.
+    """
+    rows: List[Dict[str, Any]] = []
+    seen = set()
+    for page in range(MAX_PAGES):
+        offset = page * PAGE_SIZE
+        data = gql(WAREHOUSE_VARIANTS_QUERY, {"limit": PAGE_SIZE, "offset": offset, "warehouseId": warehouse_id})
+        batch = data.get("variants") or []
+        for item in batch:
+            key = item.get("id") or item.get("sku")
+            if key and key not in seen:
+                seen.add(key)
+                rows.append(item)
+        print(f"warehouse variants warehouse={warehouse_id} offset={offset} page={len(batch)} total={len(rows)}")
+        if len(batch) < PAGE_SIZE:
+            break
+        time.sleep(PAGE_DELAY_SECONDS)
+    return rows
+
 def simple_location(value: Any) -> str:
     if isinstance(value, str):
         return value
@@ -240,7 +299,7 @@ def simple_location(value: Any) -> str:
 def fetch_warehouses() -> List[Dict[str, str]]:
     for name, query in WAREHOUSES_CANDIDATES:
         try:
-            data = gql(query, {"limit": 100, "offset": 0})
+            data = gql(query)
             items = data.get("warehouses") or []
             out = []
             for wh in items:
@@ -311,6 +370,17 @@ def fetch_warehouse_inventory(warehouse_id: str) -> Tuple[Dict[str, float], str 
     return {}, " || ".join(errors[-4:]), None
 
 
+
+def variant_stock_map(variants: List[Dict[str, Any]]) -> Dict[str, float]:
+    out: Dict[str, float] = {}
+    for v in variants:
+        sku = str(v.get("sku") or (v.get("inventoryItem") or {}).get("sku") or "").strip()
+        if not sku:
+            continue
+        qty = to_num(v.get("totalQuantity"), to_num((v.get("inventoryItem") or {}).get("totalQuantity"), 0))
+        out[sku] = qty
+    return out
+
 def write_schema_debug() -> None:
     debug: Dict[str, Any] = {"generatedAt": now_iso()}
     try:
@@ -379,18 +449,41 @@ def main() -> None:
     warehouses = fetch_warehouses()
     variants = fetch_variants()
 
+    # First use the schema-supported warehouse filter: variants(inStock: warehouseId).
+    # This matches what the SKUSavvy warehouse inventory screen does: a SKU appears in
+    # Wellington Warehouse but not in Drop Ship when its warehouse stock is only in Wellington.
     for wh in warehouses:
+        try:
+            wh_variants = fetch_variants_by_warehouse(wh["id"])
+            stock = variant_stock_map(wh_variants)
+            if stock:
+                stock_maps[wh["id"]] = stock
+                warehouse_query_used[wh["id"]] = "variants(inStock: warehouseId)"
+            else:
+                warehouse_errors[wh["id"]] = "variants(inStock: warehouseId) returned no in-stock SKUs for this warehouse"
+        except Exception as exc:  # noqa: BLE001
+            warehouse_errors[wh["id"]] = str(exc)[:500]
+            print(f"warehouse variants failed {wh['name']} {wh['id']}: {exc}")
+
+    # Optional fallback for future schema versions; kept as a secondary attempt.
+    for wh in warehouses:
+        if wh["id"] in stock_maps:
+            continue
         stock, err, query_used = fetch_warehouse_inventory(wh["id"])
         if stock:
             stock_maps[wh["id"]] = stock
-            if query_used:
-                warehouse_query_used[wh["id"]] = query_used
-        elif err:
+            warehouse_query_used[wh["id"]] = query_used or "warehouse inventory candidate"
+        elif err and wh["id"] not in warehouse_errors:
             warehouse_errors[wh["id"]] = err
 
     warehouse_status = "ok" if stock_maps else "needs_mapping"
     warning = None
-    if not stock_maps:
+    if stock_maps:
+        warning = (
+            "Warehouse filter is using SKUSavvy variants(inStock: warehouseId). "
+            "Validate a few sample SKUs against Warehouse → Inventory in SKUSavvy."
+        )
+    else:
         warning = (
             "Warehouse-level inventory was not confirmed from SKUSavvy GraphQL. "
             "The dashboard will keep showing total inventory as a safe fallback instead of false zeroes. "
@@ -413,4 +506,20 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as exc:
+        # Always write a JSON file so GitHub Pages never returns a 404/HTML error.
+        ensure_dirs()
+        write_json("data/dashboard.json", {
+            "generatedAt": now_iso(),
+            "source": "SKUSavvy GraphQL via GitHub Actions Python",
+            "error": str(exc),
+            "warehouses": KNOWN_WAREHOUSES,
+            "defaultWarehouseId": DEFAULT_WAREHOUSE_ID,
+            "warehouseDataStatus": "error",
+            "warehouseWarning": "Data generation failed. Check GitHub Actions logs and verify SKUSAVVY_TOKEN.",
+            "rows": [],
+        })
+        print(f"Wrote fallback data/dashboard.json because generation failed: {exc}")
+        raise
