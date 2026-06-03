@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-03T05:52:22.356612+00:00",
+  "generatedAt": "2026-06-03T06:12:10.805574+00:00",
   "queryFields": [
     {
       "name": "bin",
@@ -1464,24 +1464,1593 @@
     }
   ],
   "Warehouse": {
-    "error": "SKUSavvy HTTP 400: {\"errors\":[{\"message\":\"Syntax Error: Query depth limit of 7 exceeded, found 8.\",\"extensions\":{\"http\":{\"status\":400}}}]}"
+    "name": "Warehouse",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "company",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "PublicCompany",
+            "kind": "OBJECT"
+          }
+        }
+      },
+      {
+        "name": "createdAt",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Date",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "id",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "UUID",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "layoutRevision",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Int",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "location",
+        "args": [],
+        "type": {
+          "name": "Location",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "locationId",
+        "args": [],
+        "type": {
+          "name": "UUID",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "manifests",
+        "args": [
+          {
+            "name": "carrierId",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "ID",
+                "kind": "SCALAR"
+              }
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "name",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "packagings",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "phone",
+        "args": [],
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "prefix",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "returnLocation",
+        "args": [],
+        "type": {
+          "name": "Location",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "returnLocationId",
+        "args": [],
+        "type": {
+          "name": "UUID",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "shipEngineIntegrated",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Boolean",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "shopifys",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "startingPoint",
+        "args": [],
+        "type": {
+          "name": "Point2D",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "updatedAt",
+        "args": [],
+        "type": {
+          "name": "Date",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ]
   },
-  "Inventory": {
-    "error": "SKUSavvy HTTP 400: {\"errors\":[{\"message\":\"Syntax Error: Query depth limit of 7 exceeded, found 8.\",\"extensions\":{\"http\":{\"status\":400}}}]}"
-  },
+  "Inventory": null,
   "InventoryItem": {
-    "error": "SKUSavvy HTTP 400: {\"errors\":[{\"message\":\"Syntax Error: Query depth limit of 7 exceeded, found 8.\",\"extensions\":{\"http\":{\"status\":400}}}]}"
+    "name": "InventoryItem",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "abc",
+        "args": [],
+        "type": {
+          "name": "Float",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "barcodes",
+        "args": [
+          {
+            "name": "limit",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "committed",
+        "args": [
+          {
+            "name": "warehouseId",
+            "type": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "createdAt",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Date",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "customsDescription",
+        "args": [],
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "defaultLandedCost",
+        "args": [],
+        "type": {
+          "name": "BigInt",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "externalId",
+        "args": [],
+        "type": {
+          "name": "ID",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "height",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Float",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "hsCode",
+        "args": [],
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "id",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "UUID",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "length",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Float",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "lengthUnit",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "EnumLengthUnit",
+            "kind": "ENUM"
+          }
+        }
+      },
+      {
+        "name": "lots",
+        "args": [
+          {
+            "name": "expire",
+            "type": {
+              "name": "InputDayRange",
+              "kind": "INPUT_OBJECT",
+              "ofType": null
+            }
+          },
+          {
+            "name": "expired",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "warehouseId",
+            "type": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "originCountry",
+        "args": [],
+        "type": {
+          "name": "ID",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "perishable",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Boolean",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "quantities",
+        "args": [
+          {
+            "name": "allocated",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "warehouseId",
+            "type": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "serialization",
+        "args": [],
+        "type": {
+          "name": "Boolean",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "shippable",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Boolean",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "sku",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "suggestedLandedCost",
+        "args": [],
+        "type": {
+          "name": "BigInt",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "totalQuantity",
+        "args": [
+          {
+            "name": "warehouseId",
+            "type": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Int",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "unitCosts",
+        "args": [
+          {
+            "name": "vendorId",
+            "type": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "updatedAt",
+        "args": [],
+        "type": {
+          "name": "Date",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "variants",
+        "args": [
+          {
+            "name": "limit",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "storeId",
+            "type": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "weight",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Float",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "weightUnit",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "EnumWeightUnit",
+            "kind": "ENUM"
+          }
+        }
+      },
+      {
+        "name": "weightedAvgCost",
+        "args": [],
+        "type": {
+          "name": "BigInt",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "width",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Float",
+            "kind": "SCALAR"
+          }
+        }
+      }
+    ]
   },
   "Variant": {
-    "error": "SKUSavvy HTTP 400: {\"errors\":[{\"message\":\"Syntax Error: Query depth limit of 7 exceeded, found 8.\",\"extensions\":{\"http\":{\"status\":400}}}]}"
+    "name": "Variant",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "averageSales",
+        "args": [],
+        "type": {
+          "name": "Float",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "backorderable",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Boolean",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "committed",
+        "args": [
+          {
+            "name": "warehouseId",
+            "type": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "company",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "PublicCompany",
+            "kind": "OBJECT"
+          }
+        }
+      },
+      {
+        "name": "createdAt",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Date",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "deletedAt",
+        "args": [],
+        "type": {
+          "name": "Date",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "expected",
+        "args": [
+          {
+            "name": "warehouseId",
+            "type": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "externalId",
+        "args": [],
+        "type": {
+          "name": "ID",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "id",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "UUID",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "imageURL",
+        "args": [],
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "inTransit",
+        "args": [
+          {
+            "name": "warehouseId",
+            "type": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Int",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "inventory",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "inventoryItem",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "InventoryItem",
+            "kind": "OBJECT"
+          }
+        }
+      },
+      {
+        "name": "inventoryItemId",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "UUID",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "lots",
+        "args": [
+          {
+            "name": "expire",
+            "type": {
+              "name": "InputDayRange",
+              "kind": "INPUT_OBJECT",
+              "ofType": null
+            }
+          },
+          {
+            "name": "expired",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "warehouseId",
+            "type": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "meta",
+        "args": [
+          {
+            "name": "keys",
+            "type": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          },
+          {
+            "name": "namespaces",
+            "type": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL"
+          }
+        }
+      },
+      {
+        "name": "option1",
+        "args": [],
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "option2",
+        "args": [],
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "option3",
+        "args": [],
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "price",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "BigInt",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "product",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Product",
+            "kind": "OBJECT"
+          }
+        }
+      },
+      {
+        "name": "productId",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "UUID",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "quantities",
+        "args": [
+          {
+            "name": "allocated",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "warehouseId",
+            "type": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "shopifyId",
+        "args": [],
+        "type": {
+          "name": "BigInt",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "sku",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "storeId",
+        "args": [],
+        "type": {
+          "name": "ID",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "suggestedReplenishment",
+        "args": [
+          {
+            "name": "config",
+            "type": {
+              "name": "InputReplenishmentConfig",
+              "kind": "INPUT_OBJECT",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": "ReplenishmentSuggestion",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "totalQuantity",
+        "args": [
+          {
+            "name": "warehouseId",
+            "type": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Int",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "unitCosts",
+        "args": [
+          {
+            "name": "vendorId",
+            "type": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "updatedAt",
+        "args": [],
+        "type": {
+          "name": "Date",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      }
+    ]
   },
-  "ProductVariant": {
-    "error": "SKUSavvy HTTP 400: {\"errors\":[{\"message\":\"Syntax Error: Query depth limit of 7 exceeded, found 8.\",\"extensions\":{\"http\":{\"status\":400}}}]}"
-  },
+  "ProductVariant": null,
   "Bin": {
-    "error": "SKUSavvy HTTP 400: {\"errors\":[{\"message\":\"Syntax Error: Query depth limit of 7 exceeded, found 8.\",\"extensions\":{\"http\":{\"status\":400}}}]}"
+    "name": "Bin",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "barcode",
+        "args": [],
+        "type": {
+          "name": "BinBarcode",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "capacity",
+        "args": [],
+        "type": {
+          "name": "Int",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "createdAt",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Date",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "criteria",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "description",
+        "args": [],
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "height",
+        "args": [],
+        "type": {
+          "name": "Float",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "id",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "UUID",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "isReplenishmentSource",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Boolean",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "itemCount",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Int",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "length",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Float",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "level",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Int",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "locked",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Boolean",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "meta",
+        "args": [
+          {
+            "name": "keys",
+            "type": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          },
+          {
+            "name": "namespaces",
+            "type": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL"
+          }
+        }
+      },
+      {
+        "name": "name",
+        "args": [],
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "pick",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Boolean",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "pos",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Boolean",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "quantities",
+        "args": [
+          {
+            "name": "limit",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "offset",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "quantity",
+        "args": [
+          {
+            "name": "inventoryItemId",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "UUID",
+                "kind": "SCALAR"
+              }
+            }
+          }
+        ],
+        "type": {
+          "name": "Qty",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "shelf",
+        "args": [],
+        "type": {
+          "name": "Shelf",
+          "kind": "OBJECT",
+          "ofType": null
+        }
+      },
+      {
+        "name": "shelfId",
+        "args": [],
+        "type": {
+          "name": "UUID",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "totalQty",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "BigInt",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "updatedAt",
+        "args": [],
+        "type": {
+          "name": "Date",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "warehouse",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Warehouse",
+            "kind": "OBJECT"
+          }
+        }
+      },
+      {
+        "name": "warehouseId",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "UUID",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "width",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Float",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "x",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Float",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "y",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Float",
+            "kind": "SCALAR"
+          }
+        }
+      }
+    ]
   },
   "Lot": {
-    "error": "SKUSavvy HTTP 400: {\"errors\":[{\"message\":\"Syntax Error: Query depth limit of 7 exceeded, found 8.\",\"extensions\":{\"http\":{\"status\":400}}}]}"
+    "name": "Lot",
+    "kind": "OBJECT",
+    "fields": [
+      {
+        "name": "createdAt",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Date",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "expiration",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Day",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "friendlyId",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "id",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "UUID",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "itemCount",
+        "args": [],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Int",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "meta",
+        "args": [
+          {
+            "name": "keys",
+            "type": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          },
+          {
+            "name": "namespaces",
+            "type": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL"
+              }
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL"
+          }
+        }
+      },
+      {
+        "name": "name",
+        "args": [],
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        }
+      },
+      {
+        "name": "quantities",
+        "args": [
+          {
+            "name": "warehouseId",
+            "type": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST"
+          }
+        }
+      },
+      {
+        "name": "totalQty",
+        "args": [
+          {
+            "name": "warehouseId",
+            "type": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Int",
+            "kind": "SCALAR"
+          }
+        }
+      },
+      {
+        "name": "variants",
+        "args": [
+          {
+            "name": "limit",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ],
+        "type": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL"
+          }
+        }
+      }
+    ]
   }
 }
