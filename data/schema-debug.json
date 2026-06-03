@@ -1,0 +1,1487 @@
+{
+  "generatedAt": "2026-06-03T05:15:59.197355+00:00",
+  "queryFields": [
+    {
+      "name": "bin",
+      "args": [
+        {
+          "name": "binId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "warehouseId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ],
+      "type": {
+        "name": "Bin",
+        "kind": "OBJECT",
+        "ofType": null
+      }
+    },
+    {
+      "name": "binBarcodes",
+      "args": [
+        {
+          "name": "limit",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "offset",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "warehouseId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "BinBarcode",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "binCriterias",
+      "args": [
+        {
+          "name": "warehouseId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "BinCriteria",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "binReplenishments",
+      "args": [
+        {
+          "name": "binId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "fromBinIds",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "UUID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          }
+        },
+        {
+          "name": "fromShelfIds",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "UUID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          }
+        },
+        {
+          "name": "hasOrigin",
+          "type": {
+            "name": "Boolean",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "inventoryItemId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "limit",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "offset",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "search",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "sortDirection",
+          "type": {
+            "name": "EnumSortDirection",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "sortField",
+          "type": {
+            "name": "EnumBinReplenishmentSort",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "threshold",
+          "type": {
+            "name": "Boolean",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "toBinIds",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "UUID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          }
+        },
+        {
+          "name": "toShelfIds",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "UUID",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          }
+        },
+        {
+          "name": "warehouseId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "BinReplenishment",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "binSearchBulk",
+      "args": [
+        {
+          "name": "search",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "InputBinSearch",
+                  "kind": "INPUT_OBJECT"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "warehouseId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": "Bin",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        }
+      }
+    },
+    {
+      "name": "bins",
+      "args": [
+        {
+          "name": "empty",
+          "type": {
+            "name": "Boolean",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "inventory",
+          "type": {
+            "name": "EnumBinInventory",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "search",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "shelfId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "variantId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "warehouseId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Bin",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "binsHeat",
+      "args": [
+        {
+          "name": "abcAgg",
+          "type": {
+            "name": "EnumAbcAgg",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "aggBy",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "EnumAggBy",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "changeType",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "EnumInventoryChangeType",
+                "kind": "ENUM",
+                "ofType": null
+              }
+            }
+          }
+        },
+        {
+          "name": "createdAt",
+          "type": {
+            "name": "InputDateRange",
+            "kind": "INPUT_OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "warehouseId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "BinHeat",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "customerLocation",
+      "args": [
+        {
+          "name": "locationId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ],
+      "type": {
+        "name": "CustomerLocation",
+        "kind": "OBJECT",
+        "ofType": null
+      }
+    },
+    {
+      "name": "customerLocations",
+      "args": [
+        {
+          "name": "customerId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Location",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "inventoryHistory",
+      "args": [
+        {
+          "name": "inventoryItemId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "range",
+          "type": {
+            "name": "InputDateRange",
+            "kind": "INPUT_OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "warehouseId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "TimeSeriesDatum",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "inventoryItem",
+      "args": [
+        {
+          "name": "inventoryItemId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "variantId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "type": {
+        "name": "InventoryItem",
+        "kind": "OBJECT",
+        "ofType": null
+      }
+    },
+    {
+      "name": "inventoryItemBarcodes",
+      "args": [
+        {
+          "name": "inventoryItemId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "limit",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "offset",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "InventoryBarcode",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "inventoryItemSearchBulk",
+      "args": [
+        {
+          "name": "search",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "InputInventoryItemSearch",
+                  "kind": "INPUT_OBJECT"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "storeId",
+          "type": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": "InventoryItem",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        }
+      }
+    },
+    {
+      "name": "inventoryItems",
+      "args": [
+        {
+          "name": "limit",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "offset",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "search",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "InventoryItem",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "inventoryLogs",
+      "args": [
+        {
+          "name": "batchId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "binId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "createdAt",
+          "type": {
+            "name": "InputDateRange",
+            "kind": "INPUT_OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "inventoryItemId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "limit",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "lotId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "note",
+          "type": {
+            "name": "Boolean",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "offset",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "orderId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "reason",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "serial",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "shipmentId",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "sortDirection",
+          "type": {
+            "name": "EnumSortDirection",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "sortField",
+          "type": {
+            "name": "EnumInventoryLogSort",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "type",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "EnumInventoryChangeType",
+                "kind": "ENUM",
+                "ofType": null
+              }
+            }
+          }
+        },
+        {
+          "name": "userId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "variantId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "warehouseId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "QtyChangeLog",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "inventoryQty",
+      "args": [
+        {
+          "name": "inventoryItemId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "warehouseId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "type": {
+        "name": "InventoryQty",
+        "kind": "OBJECT",
+        "ofType": null
+      }
+    },
+    {
+      "name": "shopifyVariant",
+      "args": [
+        {
+          "name": "shopifyId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ],
+      "type": {
+        "name": "Variant",
+        "kind": "OBJECT",
+        "ofType": null
+      }
+    },
+    {
+      "name": "variant",
+      "args": [
+        {
+          "name": "variantId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ],
+      "type": {
+        "name": "Variant",
+        "kind": "OBJECT",
+        "ofType": null
+      }
+    },
+    {
+      "name": "variantAgg",
+      "args": [
+        {
+          "name": "field",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "EnumVariantFieldAgg",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "key",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "limit",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "offset",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "AggCount",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "variantLocations",
+      "args": [
+        {
+          "name": "orderId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        },
+        {
+          "name": "warehouseId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Qty",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "variantOptionsAgg",
+      "args": [
+        {
+          "name": "key",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "limit",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "offset",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "AggCount",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "variantSearchBulk",
+      "args": [
+        {
+          "name": "search",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "InputVariantSearch",
+                  "kind": "INPUT_OBJECT"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "storeId",
+          "type": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": "Variant",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        }
+      }
+    },
+    {
+      "name": "variantSkuMismatches",
+      "args": [
+        {
+          "name": "limit",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "offset",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Variant",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "variants",
+      "args": [
+        {
+          "name": "cost",
+          "type": {
+            "name": "InputIntRange",
+            "kind": "INPUT_OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "inStock",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "inventoryItemId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "limit",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "offset",
+          "type": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "price",
+          "type": {
+            "name": "InputIntRange",
+            "kind": "INPUT_OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "productId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "productStatus",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "EnumProductStatus",
+                "kind": "ENUM",
+                "ofType": null
+              }
+            }
+          }
+        },
+        {
+          "name": "productTags",
+          "type": {
+            "name": "InputTagFilter",
+            "kind": "INPUT_OBJECT",
+            "ofType": null
+          }
+        },
+        {
+          "name": "productType",
+          "type": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          }
+        },
+        {
+          "name": "search",
+          "type": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "sortDirection",
+          "type": {
+            "name": "EnumSortDirection",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "sortField",
+          "type": {
+            "name": "EnumVariantSort",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        {
+          "name": "storeId",
+          "type": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "variantId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        {
+          "name": "vendorId",
+          "type": {
+            "name": "UUID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Variant",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "warehouse",
+      "args": [
+        {
+          "name": "warehouseId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ],
+      "type": {
+        "name": "Warehouse",
+        "kind": "OBJECT",
+        "ofType": null
+      }
+    },
+    {
+      "name": "warehouseEmployees",
+      "args": [
+        {
+          "name": "warehouseId",
+          "type": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "UUID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        }
+      ],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "WarehouseEmployee",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "warehouses",
+      "args": [],
+      "type": {
+        "name": null,
+        "kind": "NON_NULL",
+        "ofType": {
+          "name": null,
+          "kind": "LIST",
+          "ofType": {
+            "name": null,
+            "kind": "NON_NULL",
+            "ofType": {
+              "name": "Warehouse",
+              "kind": "OBJECT"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "Warehouse": {
+    "error": "SKUSavvy HTTP 400: {\"errors\":[{\"message\":\"Syntax Error: Query depth limit of 7 exceeded, found 8.\",\"extensions\":{\"http\":{\"status\":400}}}]}"
+  },
+  "Inventory": {
+    "error": "SKUSavvy HTTP 400: {\"errors\":[{\"message\":\"Syntax Error: Query depth limit of 7 exceeded, found 8.\",\"extensions\":{\"http\":{\"status\":400}}}]}"
+  },
+  "InventoryItem": {
+    "error": "SKUSavvy HTTP 400: {\"errors\":[{\"message\":\"Syntax Error: Query depth limit of 7 exceeded, found 8.\",\"extensions\":{\"http\":{\"status\":400}}}]}"
+  },
+  "Variant": {
+    "error": "SKUSavvy HTTP 400: {\"errors\":[{\"message\":\"Syntax Error: Query depth limit of 7 exceeded, found 8.\",\"extensions\":{\"http\":{\"status\":400}}}]}"
+  },
+  "ProductVariant": {
+    "error": "SKUSavvy HTTP 400: {\"errors\":[{\"message\":\"Syntax Error: Query depth limit of 7 exceeded, found 8.\",\"extensions\":{\"http\":{\"status\":400}}}]}"
+  },
+  "Bin": {
+    "error": "SKUSavvy HTTP 400: {\"errors\":[{\"message\":\"Syntax Error: Query depth limit of 7 exceeded, found 8.\",\"extensions\":{\"http\":{\"status\":400}}}]}"
+  },
+  "Lot": {
+    "error": "SKUSavvy HTTP 400: {\"errors\":[{\"message\":\"Syntax Error: Query depth limit of 7 exceeded, found 8.\",\"extensions\":{\"http\":{\"status\":400}}}]}"
+  }
+}
