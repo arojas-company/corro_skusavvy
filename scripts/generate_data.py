@@ -28,33 +28,13 @@ KNOWN_WAREHOUSES = [
     {"id": "corro-trailer-1", "name": "Corro Trailer 1", "location": "Saugerties, NY"},
 ]
 
-VALIDATED_WAREHOUSE_TOTALS_BY_NAME = {
-    # Manually validated current warehouse totals provided by operations on 2026-06-09.
-    # These are used for the dashboard COGS / capital KPI until exact per-SKU cost-by-warehouse
-    # is exposed through SKUSavvy GraphQL.
-    "Wellington Warehouse": {"cost": 850628.65, "retailValue": 1927768.15, "marginPct": 56},
-    "Corro Trailer 1": {"cost": 39290.39, "retailValue": 83528.06, "marginPct": 53},
-}
-
-def build_warehouse_valuations(warehouses: List[Dict[str, str]]) -> Dict[str, Dict[str, Any]]:
-    out: Dict[str, Dict[str, Any]] = {}
-    for wh in warehouses:
-        totals = VALIDATED_WAREHOUSE_TOTALS_BY_NAME.get(wh.get("name", ""))
-        if totals:
-            out[wh["id"]] = {
-                **totals,
-                "warehouseName": wh.get("name"),
-                "source": "Validated operations COGS/Retail total",
-                "asOf": "2026-06-09",
-            }
-    return out
-
 VARIANTS_QUERY = """
 query DashboardVariants($limit: Int, $offset: Int) {
   variants(limit: $limit, offset: $offset) {
     id
     sku
     price
+    cost
     averageSales
     totalQuantity
     backorderable
@@ -82,6 +62,7 @@ query DashboardVariantsByWarehouse($limit: Int, $offset: Int, $warehouseId: UUID
     id
     sku
     price
+    cost
     averageSales
     totalQuantity
     backorderable
@@ -259,6 +240,11 @@ def cents(value: Any) -> float:
     return round(to_num(value, 0) / 100, 2)
 
 
+def money_field(value: Any) -> float:
+    """SKUSavvy money fields usually arrive in cents. Convert cents to dollars."""
+    return cents(value)
+
+
 def clean_status(status: Any) -> str:
     return str(status or "active").lower()
 
@@ -425,7 +411,8 @@ def normalize_rows(variants: List[Dict[str, Any]], stock_maps: Dict[str, Dict[st
     for idx, v in enumerate(variants):
         sku = str(v.get("sku") or (v.get("inventoryItem") or {}).get("sku") or "—")
         total_stock = to_num(v.get("totalQuantity"), to_num((v.get("inventoryItem") or {}).get("totalQuantity"), 0))
-        price = cents(v.get("price"))
+        price = money_field(v.get("price"))
+        unit_cost = money_field(v.get("cost")) if v.get("cost") is not None else 0
         avg_daily = to_num(v.get("averageSales"), 0)
         product = v.get("product") or {}
         status = clean_status(product.get("status") or ("archived" if product.get("deletedAt") else "active"))
@@ -442,9 +429,11 @@ def normalize_rows(variants: List[Dict[str, Any]], stock_maps: Dict[str, Dict[st
             "totalStock": total_stock,
             "stockByWarehouse": stock_by_wh,
             "price": price,
-            "unitCost": price,
+            "unitCost": unit_cost,
+            "retailValueTotal": round(total_stock * price, 2),
+            "costValueTotal": round(total_stock * unit_cost, 2),
             "avgDailySales": avg_daily,
-            "marginBySku": None,
+            "marginBySku": round(((price - unit_cost) / price) * 100, 2) if price > 0 and unit_cost > 0 else None,
         })
     return normalized
 
@@ -520,7 +509,6 @@ def main() -> None:
         "warehouseWarning": warning,
         "warehouseErrors": warehouse_errors,
         "warehouseQueryUsed": warehouse_query_used,
-        "warehouseValuations": build_warehouse_valuations(warehouses),
         "rows": normalize_rows(variants, stock_maps),
     }
     write_json("data/dashboard.json", payload)
